@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hana Frluckaj</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --bg:        #FAFAF8;
+      --text:      #1A1A1A;
+      --muted:     #5C5C5C;
+      --accent:    #C4796A;
+      --accent-lt: #EDD8D4;
+      --border:    #E2E2DC;
+      --max-w:     720px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      padding: 0 1.5rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* ── Layout shell ── */
+    .page {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 4rem 0 6rem;
+    }
+
+    /* ── Header / Profile ── */
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+    .profile-text h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+    .profile-text .pronouns {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      font-style: italic;
+    }
+    .profile-text .tagline {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .profile-text .bio {
+      font-size: 0.97rem;
+      max-width: 52ch;
+    }
+    .profile-text .bio p + p { margin-top: 0.75rem; }
+
+    .profile-photo {
+      width: 150px;
+      flex-shrink: 0;
+    }
+    .profile-photo img {
+      width: 150px;
+      height: 150px;
+      border-radius: 4px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(8%);
+    }
+
+    /* ── Links row ── */
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      font-size: 0.88rem;
+      margin-top: 1.1rem;
+      color: var(--muted);
+    }
+    .links-row a { color: var(--accent); font-weight: 500; }
+
+    /* ── Section ── */
+    section {
+      margin-bottom: 3.5rem;
+    }
+    .section-label {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── Updates ── */
+    .updates-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .update-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.9rem;
+    }
+    .update-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .update-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding-top: 0.05em;
+      white-space: nowrap;
+    }
+
+    /* ── Publications ── */
+    .pub-list {
+      display: grid;
+      gap: 2rem;
+    }
+    .pub-item {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+    .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .pub-venue {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .pub-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.07rem;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 0.35rem;
+    }
+    .pub-authors {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .pub-authors strong { color: var(--text); font-weight: 500; }
+    .pub-abstract {
+      font-size: 0.87rem;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+      max-width: 58ch;
+    }
+    .pub-links {
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+    }
+    .pub-links a {
+      color: var(--muted);
+      border-bottom: 1px solid var(--accent-lt);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .pub-links a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 540px) {
+      .profile {
+        grid-template-columns: 1fr;
+      }
+      .profile-photo {
+        order: -1;
+        width: 110px;
+      }
+      .profile-photo img { width: 110px; height: 110px; }
+      .update-item { grid-template-columns: 1fr; gap: 0.15rem; }
+      .update-date { order: -1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Profile ── -->
+  <header class="profile">
+    <div class="profile-text">
+      <h1>Hana Frluckaj</h1>
+      <p class="pronouns">she/they &nbsp;·&nbsp; <em>Hah-nah Frl-yooch-kai</em></p>
+      <p class="tagline">
+        Incoming Postdoctoral Fellow &nbsp;·&nbsp; Information Science &amp; Human-Computer Interaction
+      </p>
+      <div class="bio">
+        <p>
+          I study equity in sociotechnical systems, with a focus on open source software communities.
+          My work asks who gets to participate in collaborative software production — and why disparities persist
+          even in communities that aspire toward openness.
+        </p>
+        <p>
+          I earned my Ph.D. in Information Studies from the
+          <a href="https://www.ischool.utexas.edu/" target="_blank">University of Texas at Austin iSchool</a>,
+          advised by <a href="https://james.howison.name/" target="_blank">James Howison</a>.
+          Before that, I received my B.Sc. in Electrical and Computer Engineering from Carnegie Mellon University
+          with a minor in Human-Computer Interaction.
+        </p>
+        <p>
+          At CMU's <a href="https://coex.hcii.cmu.edu/" target="_blank">CoEx Lab</a> I worked with
+          Laura Dabbish and James Herbsleb on newcomer retention, gender differences in open source trajectories,
+          and code-of-conduct governance.
+        </p>
+      </div>
+      <div class="links-row">
+        <a href="mailto:hanafrla@cmu.edu">hanafrla@cmu.edu</a>
+        <a href="https://scholar.google.com" target="_blank">Google Scholar →</a>
+        <a href="https://github.com/hfrlucka" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/hana-frluckaj/" target="_blank">LinkedIn</a>
+        <a href="https://twitter.com/frluckaj" target="_blank">Twitter / X</a>
+      </div>
+    </div>
+    <div class="profile-photo">
+      <img src="https://hfrlucka.github.io/images/portrait.png" alt="Photo of Hana Frluckaj" />
+    </div>
+  </header>
+
+  <!-- ── Updates ── -->
+  <section id="updates">
+    <h2 class="section-label">Updates</h2>
+    <ul class="updates-list">
+      <li class="update-item">
+        <span class="update-date">Spring 2025</span>
+        <span>Starting as a Postdoctoral Fellow — more details soon.</span>
+      </li>
+      <li class="update-item">
+        <span class="update-date">2024</span>
+        <span>Successfully defended my Ph.D. dissertation at UT Austin iSchool.</span>
+      </li>
+      <li class="update-item">
+        <span class="update-date">2021</span>
+        <span>Co-authored paper on code-of-conduct conversations in open source software accepted to <strong>CSCW 2021</strong>.</span>
+      </li>
+      <li class="update-item">
+        <span class="update-date">August 2021</span>
+        <span>Began Ph.D. studies at the University of Texas at Austin School of Information.</span>
+      </li>
+      <li class="update-item">
+        <span class="update-date">May 2020</span>
+        <span>Graduated from Carnegie Mellon University with a B.Sc. in Electrical and Computer Engineering.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── Publications ── -->
+  <section id="publications">
+    <h2 class="section-label">Publications</h2>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <p class="pub-venue">CSCW 2021</p>
+        <p class="pub-title">Code of Conduct Conversations in Open Source Software Projects on GitHub</p>
+        <p class="pub-authors">
+          Qiwei Li, Pavitthra Pandurangan, <strong>Hana Frluckaj</strong>, Laura Dabbish
+        </p>
+        <p class="pub-abstract">
+          A study of how open source communities on GitHub discuss, adopt, and invoke codes of conduct
+          for governance — including the language, actors, and social dynamics that shape these conversations.
+        </p>
+        <div class="pub-links">
+          <a href="https://par.nsf.gov/servlets/purl/10347026" target="_blank">PDF</a>
+          <a href="https://dl.acm.org/doi/10.1145/3479574" target="_blank">ACM DL</a>
+        </div>
+      </div>
+
+      <!-- Placeholder — add more papers here -->
+      <div class="pub-item">
+        <p class="pub-venue">In Progress</p>
+        <p class="pub-title">Gender Differences in Open Source Newcomer Trajectories</p>
+        <p class="pub-authors"><strong>Hana Frluckaj</strong>, James Howison</p>
+        <p class="pub-abstract">
+          An empirical study of how gender shapes the onboarding experience, retention, and trajectory
+          of newcomers to open source software communities.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© 2025 Hana Frluckaj · Built with plain HTML &amp; CSS · Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
